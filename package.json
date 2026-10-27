@@ -3,16 +3,16 @@
   "private": true,
   "version": "1.0.0",
   "description": "Opera Mini OBML saved page viewer (browser + Tauri desktop)",
-  "author": "Yohan Tabrez",
+  "author": "Yohan Tabrez <yohantabrez@gmail.com>",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/djxriman/obml-viewer.git"
+    "url": "git+https://github.com/yohan-tabrez/obml-viewer.git"
   },
   "bugs": {
-    "url": "https://github.com/djxriman/obml-viewer/issues"
+    "url": "https://github.com/yohan-tabrez/obml-viewer/issues"
   },
-  "homepage": "https://github.com/djxriman/obml-viewer#readme",
+  "homepage": "https://github.com/yohan-tabrez/obml-viewer#readme",
   "type": "module",
   "scripts": {
     "dev": "vite",

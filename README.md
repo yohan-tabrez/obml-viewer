@@ -2,7 +2,7 @@
 
 **OBML Viewer** opens Opera Mini saved pages (`.obml`, `.obml15`, `.obml16`) in a browser or as a lightweight Windows desktop app. Parsing and rendering happen entirely on your machine — nothing is uploaded.
 
-**Developer:** [Yohan Tabrez](https://github.com/djxriman)
+**Developer:** [Yohan Tabrez](https://github.com/yohan-tabrez)
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
