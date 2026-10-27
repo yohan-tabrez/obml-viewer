@@ -1,0 +1,460 @@
+:root {
+  color-scheme: dark;
+
+  --font-sans: "IBM Plex Sans", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  --obml-font-family: var(--font-sans);
+  --obml-line-height: 1.1;
+
+  --bg: #0f172a;
+  --panel: #1b2336;
+  --muted-surface: #272f42;
+  --border: #475569;
+  --text: #f8fafc;
+  --muted: #94a3b8;
+  --accent: #3b82f6;
+  --accent-hover: #60a5fa;
+  --on-accent: #ffffff;
+  --accent-file: #d97706;
+  --danger: #ef4444;
+  --ok: #22c55e;
+  --ring: #93c5fd;
+
+  --viewport-a: #1a2234;
+  --viewport-b: #151c2c;
+  --stage-shadow: 0 8px 28px rgba(0, 0, 0, 0.45);
+  --drop-overlay: rgba(59, 130, 246, 0.12);
+
+  --radius: 8px;
+  --radius-sm: 6px;
+  --ease: ease;
+  --dur: 160ms;
+}
+
+[data-theme="light"] {
+  color-scheme: light;
+
+  --bg: #f8fafc;
+  --panel: #ffffff;
+  --muted-surface: #f1f5fd;
+  --border: #e4ecfc;
+  --text: #0f172a;
+  --muted: #475569;
+  --accent: #2563eb;
+  --accent-hover: #1d4ed8;
+  --on-accent: #ffffff;
+  --accent-file: #d97706;
+  --danger: #dc2626;
+  --ok: #16a34a;
+  --ring: #2563eb;
+
+  --viewport-a: #e8eef8;
+  --viewport-b: #f1f5f9;
+  --stage-shadow: 0 8px 24px rgba(15, 23, 42, 0.12);
+  --drop-overlay: rgba(37, 99, 235, 0.1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur: 0ms;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+  font-family: var(--font-sans);
+  background: var(--bg);
+  color: var(--text);
+}
+
+#app {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+}
+
+/* —— Toolbar —— */
+
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 0.75rem;
+  padding: 0.55rem 0.9rem;
+  background: var(--panel);
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-right: 0.25rem;
+}
+
+.brand-mark {
+  display: block;
+  flex-shrink: 0;
+  color: var(--accent);
+}
+
+.toolbar h1 {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+.toolbar .spacer {
+  flex: 1;
+  min-width: 0.5rem;
+}
+
+.toolbar .dev-credit {
+  font-size: 0.75rem;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.btn,
+.toolbar label.file-btn {
+  appearance: none;
+  border: 1px solid var(--border);
+  background: var(--muted-surface);
+  color: var(--text);
+  padding: 0.4rem 0.75rem;
+  border-radius: var(--radius-sm);
+  font-family: inherit;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  line-height: 1;
+  transition:
+    border-color var(--dur) var(--ease),
+    background var(--dur) var(--ease),
+    color var(--dur) var(--ease),
+    opacity var(--dur) var(--ease);
+}
+
+.btn:hover:not(:disabled),
+.toolbar label.file-btn:hover {
+  border-color: var(--accent);
+}
+
+.btn:focus-visible,
+.toolbar label.file-btn:focus-within,
+.btn-icon:focus-visible,
+.font-controls input[type="range"]:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+.btn-primary,
+.toolbar label.file-btn.btn-primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--on-accent);
+}
+
+.btn-primary:hover:not(:disabled),
+.toolbar label.file-btn.btn-primary:hover {
+  background: var(--accent-hover);
+  border-color: var(--accent-hover);
+  color: var(--on-accent);
+}
+
+.btn-secondary {
+  border-color: color-mix(in srgb, var(--accent-file) 55%, var(--border));
+}
+
+.btn-secondary:hover:not(:disabled) {
+  border-color: var(--accent-file);
+  color: var(--accent-file);
+}
+
+.btn[hidden],
+.toolbar label.file-btn[hidden] {
+  display: none;
+}
+
+.btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.btn .icon,
+.toolbar label.file-btn .icon,
+.btn-icon .icon {
+  display: block;
+  flex-shrink: 0;
+}
+
+.toolbar input[type="file"] {
+  display: none;
+}
+
+.btn-icon {
+  appearance: none;
+  border: 1px solid var(--border);
+  background: var(--muted-surface);
+  color: var(--text);
+  width: 2.1rem;
+  height: 2.1rem;
+  padding: 0;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition:
+    border-color var(--dur) var(--ease),
+    background var(--dur) var(--ease);
+}
+
+.btn-icon:hover {
+  border-color: var(--accent);
+}
+
+.btn-icon .icon-sun {
+  display: none;
+}
+
+[data-theme="light"] .btn-icon .icon-moon {
+  display: none;
+}
+
+[data-theme="light"] .btn-icon .icon-sun {
+  display: block;
+}
+
+.font-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.8rem;
+  color: var(--muted);
+  padding: 0.15rem 0.35rem 0.15rem 0.55rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--muted-surface);
+}
+
+.font-controls input[type="range"] {
+  width: 90px;
+  accent-color: var(--accent);
+  cursor: pointer;
+}
+
+.scale-badge {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  min-width: 2.6rem;
+  text-align: center;
+  color: var(--text);
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 0.15rem 0.3rem;
+}
+
+/* —— Meta —— */
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem 0.5rem;
+  padding: 0.45rem 0.9rem;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  font-size: 0.8rem;
+  color: var(--muted);
+  flex-shrink: 0;
+  min-height: 2.1rem;
+}
+
+.meta .status {
+  color: var(--muted);
+}
+
+.meta .status strong {
+  color: var(--text);
+  font-weight: 500;
+}
+
+.meta .err {
+  color: var(--danger);
+  font-weight: 500;
+}
+
+.meta .ok {
+  color: var(--ok);
+  font-weight: 500;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  max-width: 100%;
+  padding: 0.2rem 0.5rem;
+  border-radius: 999px;
+  background: var(--muted-surface);
+  border: 1px solid var(--border);
+  color: var(--muted);
+  font-size: 0.75rem;
+  line-height: 1.3;
+}
+
+.chip-title {
+  color: var(--text);
+  font-weight: 500;
+  max-width: min(40vw, 28rem);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.chip-mono {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+}
+
+.chip a {
+  color: var(--accent);
+  text-decoration: none;
+  max-width: min(50vw, 36rem);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.chip a:hover {
+  text-decoration: underline;
+}
+
+.chip a:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* —— Viewport —— */
+
+.viewport {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  padding: 1.25rem;
+  background-color: var(--viewport-b);
+  background-image:
+    linear-gradient(45deg, var(--viewport-a) 25%, transparent 25%),
+    linear-gradient(-45deg, var(--viewport-a) 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, var(--viewport-a) 75%),
+    linear-gradient(-45deg, transparent 75%, var(--viewport-a) 75%);
+  background-size: 16px 16px;
+  background-position:
+    0 0,
+    0 8px,
+    8px -8px,
+    -8px 0;
+}
+
+.viewport[aria-busy="true"] {
+  cursor: progress;
+}
+
+.drop-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  background: var(--drop-overlay);
+  border: 2px dashed var(--accent);
+  margin: 0.5rem;
+  border-radius: var(--radius);
+  color: var(--text);
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.viewport.dragging .drop-overlay {
+  display: flex;
+}
+
+.dropzone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.85rem;
+  min-height: 300px;
+  max-width: 420px;
+  margin: 2rem auto;
+  padding: 2.25rem 1.75rem;
+  border: 2px dashed var(--border);
+  border-radius: var(--radius);
+  background: var(--panel);
+  color: var(--muted);
+  text-align: center;
+  transition:
+    border-color var(--dur) var(--ease),
+    background var(--dur) var(--ease),
+    color var(--dur) var(--ease);
+}
+
+.viewport.dragging .dropzone {
+  border-color: var(--accent);
+  background: var(--muted-surface);
+  color: var(--text);
+}
+
+.dropzone-icon {
+  color: var(--accent);
+  opacity: 0.9;
+}
+
+.dropzone h2 {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.dropzone p {
+  margin: 0;
+  line-height: 1.45;
+  max-width: 28rem;
+}
+
+.dropzone .hint {
+  font-size: 0.8rem;
+}
+
+.dropzone .btn {
+  margin-top: 0.35rem;
+}
+
+#stage-host {
+  display: flex;
+  justify-content: center;
+}
+
+#stage-host .obml-stage {
+  box-shadow: var(--stage-shadow);
+  outline: 1px solid color-mix(in srgb, var(--border) 70%, transparent);
+}

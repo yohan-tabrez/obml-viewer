@@ -1,0 +1,35 @@
+{
+  "name": "obml-viewer",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Opera Mini OBML saved page viewer (browser + Tauri desktop)",
+  "author": "Yohan Tabrez",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/djxriman/obml-parser.git"
+  },
+  "bugs": {
+    "url": "https://github.com/djxriman/obml-parser/issues"
+  },
+  "homepage": "https://github.com/djxriman/obml-parser#readme",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "tauri": "tauri",
+    "tauri:dev": "tauri dev",
+    "tauri:build": "tauri build"
+  },
+  "devDependencies": {
+    "@tauri-apps/cli": "^2.12.4",
+    "typescript": "~6.0.3",
+    "vite": "^8.3.4"
+  },
+  "dependencies": {
+    "@tauri-apps/api": "^2.12.4",
+    "@tauri-apps/plugin-dialog": "^2.8.3",
+    "@tauri-apps/plugin-fs": "^2.7.1"
+  }
+}

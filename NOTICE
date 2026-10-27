@@ -1,0 +1,15 @@
+OBML Viewer
+===========
+
+Copyright (c) 2026 Yohan Tabrez
+
+This project includes parsing logic adapted from:
+
+  grawity/obml-parser
+  https://github.com/grawity/obml-parser
+  Copyright (c) 2011–2016 Mantas Mikulėnas <grawity@gmail.com>
+  Licensed under the MIT License
+
+The OBML format documentation referenced during development:
+
+  https://github.com/grawity/obml-parser/blob/master/obml-format.md
